@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>一勤职业技能培训学校 - 短视频专业培训</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "微软雅黑", sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --black: #111111;
+      --dark-gray: #222222;
+      --mid-gray: #444444;
+      --light-gray: #888888;
+      --white: #ffffff;
+    }
+
+    body {
+      background: #f5f5f5;
+      color: var(--black);
+      line-height: 1.7;
+    }
+
+    /* 导航栏 */
+    header {
+      width: 100%;
+      background: var(--black);
+      position: fixed;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+    .nav-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 20px;
+    }
+    .logo {
+      font-size: 26px;
+      color: var(--white);
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+    .nav-menu {
+      display: flex;
+      gap: 35px;
+      list-style: none;
+    }
+    .nav-menu a {
+      color: var(--light-gray);
+      text-decoration: none;
+      font-size: 15px;
+      transition: 0.3s;
+    }
+    .nav-menu a:hover {
+      color: var(--white);
+    }
+
+    /* 通用 */
+    .section {
+      width: 100%;
+      padding: 100px 20px;
+      overflow: hidden;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .title-box {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .title-box h2 {
+      font-size: 36px;
+      color: var(--black);
+      margin-bottom: 12px;
+    }
+    .title-box p {
+      color: var(--light-gray);
+      font-size: 16px;
+    }
+
+    /* 横幅 */
+    .banner {
+      margin-top: 72px;
+      width: 100%;
+      height: 600px;
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+      url("https://picsum.photos/id/1067/1900/1080") center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--white);
+    }
+    .banner-text h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+    .banner-text p {
+      font-size: 18px;
+      margin-bottom: 35px;
+      color: #ccc;
+    }
+    .btn-black {
+      padding: 14px 36px;
+      border: 2px solid var(--white);
+      color: var(--white);
+      text-decoration: none;
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+    .btn-black:hover {
+      background: var(--white);
+      color: var(--black);
+    }
+
+    /* 学校介绍 */
+    .about-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+    .about-img img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+    .about-text h3 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: var(--black);
+    }
+    .about-text p {
+      color: var(--mid-gray);
+      font-size: 16px;
+    }
+
+    /* ======================
+       课程中心 — 8个卡片 带头图
+    ======================= */
+    .course-bg {
+      background: linear-gradient(rgba(255,255,255,0.92),rgba(255,255,255,0.92)),
+      url("https://picsum.photos/id/1048/1900/800") center/cover fixed;
+    }
+    .course-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+    }
+    .course-card {
+      background: var(--white);
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      transition: 0.3s;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .course-card:hover {
+      transform: translateY(-8px);
+    }
+    .course-img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+    .course-text {
+      padding: 25px 20px;
+    }
+    .course-card h4 {
+      font-size: 19px;
+      margin-bottom: 12px;
+      color: var(--black);
+      line-height: 1.4;
+    }
+    .course-card p {
+      color: var(--light-gray);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* ======================
+       教学优势 — 8个卡片 全新排版
+    ======================= */
+    .advantage-top-img {
+      width: 100%;
+      height: 620px;
+      border-radius: 6px;
+      object-fit: cover;
+      margin-bottom: 50px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+    .advantage-wrap {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 28px;
+    }
+    .adv-card {
+      background: var(--dark-gray);
+      color: var(--white);
+      padding: 35px 20px;
+      text-align: center;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+    .adv-card:hover {
+      transform: translateY(-5px);
+      background: #000000;
+    }
+    .adv-card h4 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    .adv-card p {
+      color: #bbb;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* 师资力量 一行4个排版，适配960x1358竖版海报 ✅ */
+    .teacher-bg {
+      background: #f0f0f0;
+    }
+    .teacher-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr); /* 一行3个，竖版海报更合适 */
+      gap: 30px;
+    }
+    .teacher-card {
+      background: var(--white);
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: 0.3s;
+    }
+    .teacher-card:hover {
+      transform: translateY(-5px);
+    }
+    /* 适配竖版海报比例：960x1358 → 宽高比约为 9:13 */
+    .teacher-card img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 9 / 13;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* 底部 */
+    footer {
+      background: var(--black);
+      color: #aaa;
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    /* 移动端适配 */
+    @media (max-width:1024px) {
+      .course-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .advantage-wrap {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .teacher-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width:768px) {
+      .nav-menu { display: none; }
+      .banner-text h1 {
+        font-size: 28px;
+      }
+      .about-wrap {
+        grid-template-columns: 1fr;
+      }
+      .advantage-top-img { height: 200px; }
+    }
+    @media (max-width:480px) {
+      .course-grid {
+        grid-template-columns: 1fr;
+      }
+      .advantage-wrap {
+        grid-template-columns: 1fr;
+      }
+      .teacher-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- 导航 -->
+<header>
+  <div class="nav-wrap">
+    <div class="logo">一勤职业技能培训</div>
+    <ul class="nav-menu">
+      <li><a href="#about">学校介绍</a></li>
+      <li><a href="#course">课程中心</a></li>
+      <li><a href="#advantage">教学优势</a></li>
+      <li><a href="#teacher">师资力量</a></li>
+      <li><a href="#contact">联系报名</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- 横幅 -->
+<section class="banner">
+  <div class="banner-text">
+    <h1>一勤职业技能培训学校</h1>
+    <p>专注短视频拍摄·剪辑·运营·变现·AI 全体系培训</p>
+    <a href="#contact" class="btn-black">立即咨询</a>
+  </div>
+</section>
+
+<!-- 学校介绍 -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="title-box">
+      <h2>学校介绍</h2>
+      <p>深耕短视频教育 · 专注实战技能培养</p>
+    </div>
+    <div class="about-wrap">
+      <div class="about-img">
+        <img src="images/公司/门头3.jpg" alt="学校环境">
+      </div>
+      <div class="about-text">
+        <h3>关于一勤职业技能培训学校</h3>
+        <p>一勤职业技能培训学校，是一家专注于短视频全产业链教学的正规技能培训机构。</p>
+        <br>
+        <p>学校聚焦短视频拍摄、后期剪辑、账号文案策划、流量运营、AI短剧漫剧制作、商业变现等核心课程,面向零基础创业者、上班族、转行学员量身定制教学方案。</p>
+        <br>
+        <p>坚持手把手，一对一辅导，实战与教学相结合的办学理念，毕业之后推荐就业，拒绝理论空谈，让每一位学员都能真正学到能用、能赚钱的短视频硬技能。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================
+   课程中心 — 8个卡片 带头图
+======================= -->
+<section class="section course-bg" id="course">
+  <div class="container">
+    <div class="title-box">
+      <h2>课程中心</h2>
+      <p>系统化课程 · 从零基础到专业大神</p>
+    </div>
+    <div class="course-grid">
+      <div class="course-card">
+        <img src="https://picsum.photos/id/180/400/300" class="course-img" alt="短视频入门">
+        <div class="course-text">
+          <h4>短视频入门</h4>
+          <p>后期介绍 / 剪辑软件 / 效果制作</p>
+        </div>
+      </div>
+      <div class="course-card">
+        <img src="images/课程中心/短视频架构.png" class="course-img" alt="短视频架构">
+        <div class="course-text">
+          <h4>短视频架构</h4>
+          <p>封面制作 / 黄金三秒 / 剪辑节奏</p>
+        </div>
+      </div>
+      <div class="course-card">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=400&fit=crop" class="course-img" alt="影视前期基础">
+        <div class="course-text">
+          <h4>影视前期基础</h4>
+          <p>器材 / 构图 / 灯光 / 运镜</p>
+        </div>
+      </div>
+      <div class="course-card">
+        <img src="https://picsum.photos/id/119/400/300" class="course-img" alt="剪辑思维">
+        <div class="course-text">
+          <h4>剪辑思维</h4>
+          <p>叙事结构 / 视频节奏 / 情绪引导</p>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600&h=400&fit=crop" class="course-img" alt="拍摄剪辑实战">
+        <div class="course-text">
+          <h4>拍摄剪辑实战</h4>
+          <p>脚本 / 实战拍摄 / 各类型视频剪辑</p>
+        </div>
+      </div>
+      <div class="course-card">
+        <img src="images/课程中心/调色.png" class="course-img" alt="达芬奇调色">
+        <div class="course-text">
+          <h4>达芬奇调色</h4>
+          <p>软件基础 / 一级 / 二级调色</p>
+        </div>
+      </div>
+      <div class="course-card">
+        <img src="images/课程中心/AI.png" class="course-img" alt="AI赋能">
+        <div class="course-text">
+          <h4>AI赋能</h4>
+          <p>AI工具使用 / Prompt使用/ 落地实操</p>
+        </div>
+      </div>
+      <div class="course-card">
+        <img src="images/课程中心/新媒体运营.png" class="course-img" alt="新媒体运营">
+        <div class="course-text">
+          <h4>新媒体运营</h4>
+          <p>账号 / 选题 / 发布 / 数据 / 电商</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================
+   教学优势 — 8个卡片
+======================= -->
+<section class="section" id="advantage">
+  <div class="container">
+    <div class="title-box">
+      <h2>教学优势</h2>
+      <p>选择一勤 · 选择专业靠谱的短视频培训</p>
+    </div>
+    <img class="advantage-top-img" src="images/学员毕业/202604.jpg" alt="教学优势头图">
+    
+    <div class="advantage-wrap">
+      <div class="adv-card">
+        <h4>零基础入门</h4>
+        <p>无需基础，从零带教，小白快速上手</p>
+      </div>
+      <div class="adv-card">
+        <h4>全实战教学</h4>
+        <p>边学边拍边剪，课堂即是实操现场</p>
+      </div>
+      <div class="adv-card">
+        <h4>资深讲师团队</h4>
+        <p>行业实战导师，懂流量更懂教学</p>
+      </div>
+      <div class="adv-card">
+        <h4>终身答疑辅导</h4>
+        <p>学完长期跟进，账号运营随时咨询</p>
+      </div>
+      <div class="adv-card">
+        <h4>阶段性学习</h4>
+        <p>每阶段会有对应考核、通过考核才可进入下一阶段学习</p>
+      </div>
+
+      <div class="adv-card">
+        <h4>毕业推荐就业</h4>
+        <p>考核通过，推荐新媒体对口岗位</p>
+      </div>
+      <div class="adv-card">
+        <h4>商业接单落地</h4>
+        <p>教学结合变现，学完可直接接单</p>
+      </div>
+      <div class="adv-card">
+        <h4>免费循环复训</h4>
+        <p>一期没学会，免费重修不限次数</p>
+      </div>
+      <div class="adv-card">
+        <h4>免费提供住宿</h4>
+        <p>床都是太空舱级别的床，环境舒适。</p>
+      </div>
+      <div class="adv-card">
+        <h4>试学机制</h4>
+        <p>免费试学三天，不产生任何费用</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 师资力量（带点击弹窗详情）✅ -->
+<section class="section teacher-bg" id="teacher">
+  <div class="container">
+    <div class="title-box">
+      <h2>师资力量</h2>
+      <p>一线行业导师 · 手把手带你做爆款</p>
+    </div>
+
+    <div class="teacher-grid">
+      <div class="teacher-card" onclick="openTeacherModal('images/teacher/图片1.png','小李老师','短视频实战讲师','5年短视频创作经验，擅长爆款剪辑、剧情拍摄，累计打造500+百万播放账号，教学风格通俗易懂，零基础学员快速上手。')">
+        <img src="images/teacher/图片1.png" alt="小李老师">
+      </div>
+      <div class="teacher-card" onclick="openTeacherModal('images/teacher/图片2.png','邓老师','运营总监讲师','8年新媒体运营经验，专注流量变现、账号起号、直播带货，擅长从0-1打造商业账号，实战派教学导师。')">
+        <img src="images/teacher/图片2.png" alt="邓老师">
+      </div>
+      <div class="teacher-card" onclick="openTeacherModal('images/teacher/图片3.png','大李老师','拍摄导演讲师','7年影视拍摄、导演经验，精通运镜、灯光、构图，电影级教学标准，让学员拍出专业质感短视频。')">
+        <img src="images/teacher/图片3.png" alt="大李老师">
+      </div>
+      <div class="teacher-card" onclick="openTeacherModal('images/teacher/图片4.png','王老师','AI剪辑讲师','6年后期剪辑+AI工具教学经验，精通PR、AE、达芬奇、AI生成视频，高效教学，让剪辑效率翻倍。')">
+        <img src="images/teacher/图片4.png" alt="王老师">
+      </div>
+      <div class="teacher-card" onclick="openTeacherModal('images/teacher/图片5.png','张老师','文案策划讲师','4年短视频文案、脚本创作经验，擅长黄金三秒、情绪文案、爆款结构，让视频更有吸引力。')">
+        <img src="images/teacher/图片5.png" alt="张老师">
+      </div>
+      <div class="teacher-card" onclick="openTeacherModal('images/teacher/图片6.png','卢老师','变现讲师','6年短视频商业变现经验，精通探店、团购、星图、带货、私域转化，帮助学员快速赚钱。')">
+        <img src="images/teacher/图片6.png" alt="卢老师">
+      </div>
+      <div class="teacher-card" onclick="openTeacherModal('images/teacher/图片7.jpg','陈老师','短剧讲师','5年抖音短剧、漫剧制作经验，精通AI短剧创作、分镜、配音、发布，零基础可学。')">
+        <img src="images/teacher/图片7.jpg" alt="陈老师">
+      </div>
+      <div class="teacher-card" onclick="openTeacherModal('images/teacher/图片8.png','郭老师','直播讲师','5年电商直播、主播培训经验，擅长话术、场景搭建、流量投放，帮助学员快速开播变现。')">
+        <img src="images/teacher/图片8.png" alt="郭老师">
+      </div>
+    </div>
+  </div>
+
+<!-- 老师详情弹窗（全局只需一个） -->
+<div id="teacherModal" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:9999; display:none; justify-content:center; align-items:center; padding:20px;">
+  <div style="background:#fff; max-width:900px; width:100%; border-radius:12px; overflow:hidden; display:grid; grid-template-columns:1fr 1.2fr; position:relative;" id="modalContent">
+    <!-- 关闭按钮 -->
+    <div onclick="closeTeacherModal()" style="position:absolute; right:18px; top:18px; width:36px; height:36px; background:#000; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:20px; cursor:pointer; z-index:10;">×</div>
+    
+    <!-- 左侧图片 -->
+    <div style="height:600px; display:flex;">
+      <img id="modalImg" src="" style="width:100%; height:100%; object-fit:cover;">
+    </div>
+    
+    <!-- 右侧信息 -->
+    <div style="padding:50px 40px; display:flex; flex-direction:column; justify-content:center;">
+      <h3 id="modalName" style="font-size:32px; margin-bottom:10px; color:#111;"></h3>
+      <h4 id="modalJob" style="font-size:18px; color:#666; margin-bottom:25px; font-weight:normal;"></h4>
+      <p id="modalDesc" style="font-size:16px; line-height:1.9; color:#333;"></p>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* 弹窗移动端适配 */
+  @media (max-width:768px) {
+    #modalContent { grid-template-columns:1fr !important; }
+    #modalImg { height:320px !important; }
+  }
+</style>
+
+<script>
+  // 打开老师弹窗
+  function openTeacherModal(img, name, job, desc) {
+    document.getElementById('modalImg').src = img;
+    document.getElementById('modalName').innerText = name;
+    document.getElementById('modalJob').innerText = job;
+    document.getElementById('modalDesc').innerText = desc;
+    document.getElementById('teacherModal').style.display = 'flex';
+    document.body.style.overflow = 'hidden'; // 禁止背景滚动
+  }
+
+  // 关闭弹窗
+  function closeTeacherModal() {
+    document.getElementById('teacherModal').style.display = 'none';
+    document.body.style.overflow = 'auto'; // 恢复滚动
+  }
+
+  // 点击空白处关闭
+  document.getElementById('teacherModal').addEventListener('click', function(e) {
+    if(e.target === this) closeTeacherModal();
+  });
+</script>
+
+<!-- 联系我们 · 高级质感配图版 -->
+<section class="section" id="contact" style="background: #f7f7f7;">
+  <div class="container">
+    <div class="title-box">
+      <h2>联系我们</h2>
+      <p>一对一专属咨询 · 为你规划学习路径</p>
+    </div>
+
+    <div style="max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; border-radius:12px; overflow:hidden; box-shadow:0 6px 25px rgba(0,0,0,0.06);">
+      <!-- 左侧配图蒙版区 -->
+      <div style="background:linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.65)), url('https://picsum.photos/id/1048/1200/800') center/cover no-repeat; padding:60px 40px; display:flex; flex-direction:column; justify-content:center;">
+        <h3 style="font-size:28px; color:#fff; margin-bottom:15px; font-weight:600;">即刻咨询 抢占名额</h3>
+        <p style="color:#d0d0d0; font-size:15px; line-height:1.8;">深耕短视频全链路培训，零基础也能从零入门，专业导师一对一解答课程、学费、住宿及就业相关问题。</p>
+      </div>
+
+      <!-- 右侧联系方式浅色系高级排版 -->
+      <div style="background:#fff; padding:60px 40px; display:flex; flex-direction:column; justify-content:center; gap:30px;">
+        <div style="display:flex; align-items:center; gap:20px;">
+          <div style="width:44px; height:44px; background:#222; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-size:18px; flex-shrink:0;">📞</div>
+          <div>
+            <strong style="display:block; font-size:16px; color:#111; margin-bottom:4px;">咨询热线</strong>
+            <span style="color:#666; font-size:14px;">4008696110</span>
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:20px;">
+          <div style="width:44px; height:44px; background:#222; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-size:18px; flex-shrink:0;">📍</div>
+          <div>
+            <strong style="display:block; font-size:16px; color:#111; margin-bottom:4px;">学校地址</strong>
+            <span style="color:#666; font-size:14px;">吉林省长春市绿园区吾悦国际中心</span>
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:20px;">
+          <div style="width:44px; height:44px; background:#222; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-size:18px; flex-shrink:0;">⏰</div>
+          <div>
+            <strong style="display:block; font-size:16px; color:#111; margin-bottom:4px;">营业时间</strong>
+            <span style="color:#666; font-size:14px;">周一至周六 9:00-18:00</span>
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:20px;">
+          <div style="width:44px; height:44px; background:#222; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-size:18px; flex-shrink:0;">💬</div>
+          <div>
+            <strong style="display:block; font-size:16px; color:#111; margin-bottom:4px;">微信咨询</strong>
+            <span style="color:#666; font-size:14px;">手机号同微信号</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 移动端自适应 -->
+  <style>
+    @media (max-width:768px) {
+      #contact > .container > div:last-child {
+        grid-template-columns: 1fr !important;
+      }
+    }
+  </style>
+</section>
+
+<!-- 底部 -->
+<footer>
+  <p>© 2026 一勤职业技能培训学校版权所有 专业短视频技能培训</p>
+</footer>
+
+</body>
+</html>
