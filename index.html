@@ -118,6 +118,7 @@
       text-decoration: none;
       border-radius: 2px;
       transition: 0.3s;
+      display: inline-block;
     }
     .btn-black:hover {
       background: var(--white);
@@ -147,9 +148,7 @@
       font-size: 16px;
     }
 
-    /* ======================
-       课程中心 — 8个卡片 带头图
-    ======================= */
+    /* 课程中心 */
     .course-bg {
       background: linear-gradient(rgba(255,255,255,0.92),rgba(255,255,255,0.92)),
       url("https://picsum.photos/id/1048/1900/800") center/cover fixed;
@@ -191,16 +190,39 @@
     }
 
     /* ======================
-       教学优势 — 8个卡片 全新排版
+       教学优势 — 轮播图样式
     ======================= */
-    .advantage-top-img {
+    .swiper {
       width: 100%;
       height: 620px;
       border-radius: 6px;
-      object-fit: cover;
       margin-bottom: 50px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.15);
     }
+    .swiper-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .swiper-button-next, .swiper-button-prev {
+      color: #fff !important;
+      background: rgba(0,0,0,0.3);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+    }
+    .swiper-button-next:after, .swiper-button-prev:after {
+      font-size: 20px !important;
+    }
+    .swiper-pagination-bullet {
+      background: #fff !important;
+      opacity: 0.7;
+    }
+    .swiper-pagination-bullet-active {
+      background: #fff !important;
+      opacity: 1;
+    }
+
     .advantage-wrap {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -228,13 +250,13 @@
       line-height: 1.5;
     }
 
-    /* 师资力量 一行4个排版，适配960x1358竖版海报 ✅ */
+    /* 师资力量 */
     .teacher-bg {
       background: #f0f0f0;
     }
     .teacher-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr); /* 一行3个，竖版海报更合适 */
+      grid-template-columns: repeat(4, 1fr);
       gap: 30px;
     }
     .teacher-card {
@@ -243,11 +265,11 @@
       overflow: hidden;
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       transition: 0.3s;
+      cursor: pointer;
     }
     .teacher-card:hover {
       transform: translateY(-5px);
     }
-    /* 适配竖版海报比例：960x1358 → 宽高比约为 9:13 */
     .teacher-card img {
       width: 100%;
       height: auto;
@@ -264,40 +286,139 @@
       padding: 30px 20px;
     }
 
-    /* 移动端适配 */
+    /* ======================
+       全端完美适配
+    ======================= */
+    /* 平板适配 (1024px) */
     @media (max-width:1024px) {
       .course-grid {
         grid-template-columns: repeat(2, 1fr);
       }
       .advantage-wrap {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
       }
       .teacher-grid {
         grid-template-columns: repeat(2, 1fr);
       }
+      .swiper {
+        height: 450px;
+      }
     }
+
+    /* 平板竖屏/大屏手机 (768px) */
     @media (max-width:768px) {
-      .nav-menu { display: none; }
+      .nav-menu {
+        display: none;
+      }
+      .banner {
+        height: 500px;
+      }
       .banner-text h1 {
-        font-size: 28px;
+        font-size: 32px;
+        padding: 0 10px;
+      }
+      .banner-text p {
+        font-size: 16px;
+        padding: 0 10px;
       }
       .about-wrap {
         grid-template-columns: 1fr;
+        gap: 30px;
       }
-      .advantage-top-img { height: 200px; }
+      .about-img img {
+        height: 350px;
+      }
+      .advantage-wrap {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .swiper {
+        height: 350px;
+      }
+      .title-box h2 {
+        font-size: 28px;
+      }
+      /* 联系我们 */
+      #contact > .container > div {
+        grid-template-columns: 1fr !important;
+      }
     }
+
+    /* 手机适配 (480px) */
     @media (max-width:480px) {
+      .section {
+        padding: 60px 15px;
+      }
+      .banner {
+        height: 420px;
+        margin-top: 60px;
+      }
+      .banner-text h1 {
+        font-size: 26px;
+      }
+      .btn-black {
+        padding: 12px 28px;
+        font-size: 14px;
+      }
+      .about-img img {
+        height: 280px;
+      }
       .course-grid {
         grid-template-columns: 1fr;
+        gap: 20px;
       }
       .advantage-wrap {
         grid-template-columns: 1fr;
+        gap: 20px;
       }
       .teacher-grid {
         grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .swiper {
+        height: 250px;
+      }
+      /* 弹窗适配 */
+      #modalContent {
+        grid-template-columns: 1fr !important;
+      }
+      #modalImg {
+        height: 300px !important;
       }
     }
+
+    /* 弹窗基础样式 */
+    #teacherModal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.85);
+      z-index: 9999;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    #modalContent {
+      background: #fff;
+      max-width: 900px;
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      position: relative;
+    }
+    #modalImg {
+      width: 100%;
+      height: 600px;
+      object-fit: cover;
+    }
   </style>
+
+  <!-- 轮播图插件CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
 <body>
 
@@ -347,9 +468,7 @@
   </div>
 </section>
 
-<!-- ======================
-   课程中心 — 8个卡片 带头图
-======================= -->
+<!-- 课程中心 -->
 <section class="section course-bg" id="course">
   <div class="container">
     <div class="title-box">
@@ -419,7 +538,7 @@
 </section>
 
 <!-- ======================
-   教学优势 — 8个卡片
+   教学优势 — 轮播图版本
 ======================= -->
 <section class="section" id="advantage">
   <div class="container">
@@ -427,7 +546,26 @@
       <h2>教学优势</h2>
       <p>选择一勤 · 选择专业靠谱的短视频培训</p>
     </div>
-    <img class="advantage-top-img" src="images/学员毕业/202604.jpg" alt="教学优势头图">
+
+    <!-- 轮播图 -->
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img src="images/学员毕业/202604.jpg" alt="教学风采">
+        </div>
+        <div class="swiper-slide">
+          <img src="images/学员毕业/202602.jpg" alt="教学环境">
+        </div>
+        <div class="swiper-slide">
+          <img src="images/学员毕业/202511.jpg" alt="学员上课">
+        </div>
+      </div>
+      <!-- 左右箭头 -->
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <!-- 分页指示器 -->
+      <div class="swiper-pagination"></div>
+    </div>
     
     <div class="advantage-wrap">
       <div class="adv-card">
@@ -475,7 +613,7 @@
   </div>
 </section>
 
-<!-- 师资力量（带点击弹窗详情）✅ -->
+<!-- 师资力量 -->
 <section class="section teacher-bg" id="teacher">
   <div class="container">
     <div class="title-box">
@@ -511,18 +649,13 @@
     </div>
   </div>
 
-<!-- 老师详情弹窗（全局只需一个） -->
-<div id="teacherModal" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:9999; display:none; justify-content:center; align-items:center; padding:20px;">
-  <div style="background:#fff; max-width:900px; width:100%; border-radius:12px; overflow:hidden; display:grid; grid-template-columns:1fr 1.2fr; position:relative;" id="modalContent">
-    <!-- 关闭按钮 -->
+<!-- 老师详情弹窗 -->
+<div id="teacherModal">
+  <div id="modalContent">
     <div onclick="closeTeacherModal()" style="position:absolute; right:18px; top:18px; width:36px; height:36px; background:#000; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:20px; cursor:pointer; z-index:10;">×</div>
-    
-    <!-- 左侧图片 -->
-    <div style="height:600px; display:flex;">
-      <img id="modalImg" src="" style="width:100%; height:100%; object-fit:cover;">
+    <div>
+      <img id="modalImg" src="">
     </div>
-    
-    <!-- 右侧信息 -->
     <div style="padding:50px 40px; display:flex; flex-direction:column; justify-content:center;">
       <h3 id="modalName" style="font-size:32px; margin-bottom:10px; color:#111;"></h3>
       <h4 id="modalJob" style="font-size:18px; color:#666; margin-bottom:25px; font-weight:normal;"></h4>
@@ -530,14 +663,6 @@
     </div>
   </div>
 </div>
-
-<style>
-  /* 弹窗移动端适配 */
-  @media (max-width:768px) {
-    #modalContent { grid-template-columns:1fr !important; }
-    #modalImg { height:320px !important; }
-  }
-</style>
 
 <script>
   // 打开老师弹窗
@@ -547,13 +672,13 @@
     document.getElementById('modalJob').innerText = job;
     document.getElementById('modalDesc').innerText = desc;
     document.getElementById('teacherModal').style.display = 'flex';
-    document.body.style.overflow = 'hidden'; // 禁止背景滚动
+    document.body.style.overflow = 'hidden';
   }
 
   // 关闭弹窗
   function closeTeacherModal() {
     document.getElementById('teacherModal').style.display = 'none';
-    document.body.style.overflow = 'auto'; // 恢复滚动
+    document.body.style.overflow = 'auto';
   }
 
   // 点击空白处关闭
@@ -562,7 +687,7 @@
   });
 </script>
 
-<!-- 联系我们 · 高级质感配图版 -->
+<!-- 联系我们 -->
 <section class="section" id="contact" style="background: #f7f7f7;">
   <div class="container">
     <div class="title-box">
@@ -571,13 +696,11 @@
     </div>
 
     <div style="max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; border-radius:12px; overflow:hidden; box-shadow:0 6px 25px rgba(0,0,0,0.06);">
-      <!-- 左侧配图蒙版区 -->
       <div style="background:linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.65)), url('https://picsum.photos/id/1048/1200/800') center/cover no-repeat; padding:60px 40px; display:flex; flex-direction:column; justify-content:center;">
         <h3 style="font-size:28px; color:#fff; margin-bottom:15px; font-weight:600;">即刻咨询 抢占名额</h3>
         <p style="color:#d0d0d0; font-size:15px; line-height:1.8;">深耕短视频全链路培训，零基础也能从零入门，专业导师一对一解答课程、学费、住宿及就业相关问题。</p>
       </div>
 
-      <!-- 右侧联系方式浅色系高级排版 -->
       <div style="background:#fff; padding:60px 40px; display:flex; flex-direction:column; justify-content:center; gap:30px;">
         <div style="display:flex; align-items:center; gap:20px;">
           <div style="width:44px; height:44px; background:#222; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-size:18px; flex-shrink:0;">📞</div>
@@ -613,21 +736,32 @@
       </div>
     </div>
   </div>
-
-  <!-- 移动端自适应 -->
-  <style>
-    @media (max-width:768px) {
-      #contact > .container > div:last-child {
-        grid-template-columns: 1fr !important;
-      }
-    }
-  </style>
 </section>
 
 <!-- 底部 -->
 <footer>
   <p>© 2026 一勤职业技能培训学校版权所有 专业短视频技能培训</p>
 </footer>
+
+<!-- 轮播图插件JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  var swiper = new Swiper(".mySwiper", {
+    loop: true,          // 无限循环
+    autoplay: {          // 自动播放
+      delay: 3500,
+      disableOnInteraction: false,
+    },
+    pagination: {        // 底部指示器
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {        // 左右箭头
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+</script>
 
 </body>
 </html>
